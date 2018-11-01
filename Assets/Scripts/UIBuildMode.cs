@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class UIBuildMode : MonoBehaviour {
 
+    GameManager gm;
     public Text buildModeText;
     private bool isBuildModeOn = false;
 
 	// Use this for initialization
 	void Start () {
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         buildModeText.text = "";
     }
 	
@@ -21,15 +23,14 @@ public class UIBuildMode : MonoBehaviour {
     public void ToggleBuildMode()
     {
         isBuildModeOn = !isBuildModeOn;
-
-        GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         gm.SetBuildMode(isBuildModeOn);
 
         SetBuildModeText();
     }
 
-    void SetBuildModeText()
+    public void SetBuildModeText()
     {
-        buildModeText.text = isBuildModeOn ? "BuildMode" : "";
+        buildModeText.text = isBuildModeOn ? "BuildMode "+gm.selectedBuildingIndex : "";
     }
+
 }

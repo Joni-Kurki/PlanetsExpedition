@@ -9,6 +9,7 @@ TagManager:
   - UI
   - GameManager
   - Builder
+  - Cursor_building
   layers:
   - Default
   - TransparentFX

@@ -20,6 +20,30 @@ public class KeyboardController : MonoBehaviour {
             UIBuildMode ubmscript = uimodetextgo.GetComponent<UIBuildMode>();
             ubmscript.ToggleBuildMode();
         }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            if (gm.selectedBuildingIndex > 0)
+            {
+                CursorObjectSwap cos = GameObject.FindGameObjectWithTag("Cursor").GetComponent<CursorObjectSwap>();
+                cos.SetAllFalse();
+                gm.selectedBuildingIndex--;
+                var uimodetextgo = GameObject.FindGameObjectsWithTag("UI").FirstOrDefault(f => f.gameObject.name == "UI_ModeText");
+                UIBuildMode ubmscript = uimodetextgo.GetComponent<UIBuildMode>();
+                ubmscript.SetBuildModeText();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            if (gm.selectedBuildingIndex + 1 < gm.buildingArray.Length)
+            {
+                CursorObjectSwap cos = GameObject.FindGameObjectWithTag("Cursor").GetComponent<CursorObjectSwap>();
+                cos.SetAllFalse();
+                gm.selectedBuildingIndex++;
+                var uimodetextgo = GameObject.FindGameObjectsWithTag("UI").FirstOrDefault(f => f.gameObject.name == "UI_ModeText");
+                UIBuildMode ubmscript = uimodetextgo.GetComponent<UIBuildMode>();
+                ubmscript.SetBuildModeText();
+            }
+        }
         if (Input.GetMouseButtonDown(0) && gm.buildMode && gm.canBuild){
             BuildingBuilder builder = GameObject.FindGameObjectWithTag("Builder").GetComponent<BuildingBuilder>();
             builder.BuildBuilding(GameObject.FindGameObjectWithTag("Cursor").transform.position);

@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
         temperature = -125.0f;
         scrapMetal = 20;
         canBuild = true;
-        selectedBuilding = null;
+        selectedBuilding = buildingArray[selectedBuildingIndex];
     }
 	
 	// Update is called once per frame
@@ -36,6 +36,16 @@ public class GameManager : MonoBehaviour {
     public void SetBuildMode(bool b)
     {
         buildMode = b;
+
+        CursorObjectSwap cos = GameObject.FindGameObjectWithTag("Cursor").GetComponent<CursorObjectSwap>();
+        if (buildMode)
+        {
+            cos.instantiatedGos[selectedBuildingIndex].SetActive(true);
+        }
+        else if (!buildMode)
+        {
+            cos.SetAllFalse();
+            selectedBuilding = null;
+        }
     }
-    
 }

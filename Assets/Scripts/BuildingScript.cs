@@ -18,7 +18,7 @@ public class BuildingScript : MonoBehaviour {
 
     public void Select(GameObject go)
     {
-        Debug.Log("Selected building");
+        Debug.Log("Selected building "+go.name);
         gm.selectedBuilding = go;
     }
 }

@@ -37,9 +37,9 @@ public class CursorHitbox : MonoBehaviour {
         }
     }
 
-    private void SetCursor(bool swap)
+    private void SetCursor(bool b)
     {
-        gm.canBuild = swap;
+        gm.canBuild = b;
         CursorColorSwap ccs = gameObject.GetComponent<CursorColorSwap>();
         ccs.SetMaterial();
     }
