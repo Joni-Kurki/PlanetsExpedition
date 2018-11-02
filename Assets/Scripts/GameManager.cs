@@ -9,17 +9,19 @@ public class GameManager : MonoBehaviour {
 
     public float o2;
     public float temperature;
-    public int scrapMetal;
+    public float scrapMetal;
 
     public GameObject[] buildingArray;
 
     public bool canBuild;
+    public bool connectButtonToggled;
 
     public GameObject selectedBuilding;
 
 	// Use this for initialization
 	void Start () {
         buildMode = false;
+        connectButtonToggled = false;
         selectedBuildingIndex = 0;
         o2 = 100;
         temperature = -125.0f;
@@ -30,7 +32,8 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (buildMode)
+            connectButtonToggled = false;
 	}
 
     public void SetBuildMode(bool b)
