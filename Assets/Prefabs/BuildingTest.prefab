@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 65514230349680984}
   - component: {fileID: 114171450529632624}
   - component: {fileID: 114022402716843700}
+  - component: {fileID: 114832744514918652}
   m_Layer: 0
   m_Name: BuildingTest
   m_TagString: Building_hitboxable
@@ -139,3 +140,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d577763eeaca364d8d38a9f3855e5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114832744514918652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1988857422001412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a791ec5960720e746a1e7853bb112863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxNumberOfConnections: 2
+  connections: []
+  TEST_showConnections: 1
