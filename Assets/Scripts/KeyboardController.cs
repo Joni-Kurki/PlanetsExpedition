@@ -81,6 +81,10 @@ public class KeyboardController : MonoBehaviour {
 
                         cs = gm.selectedBuilding.GetComponent<BuildingConnections>();
                         cs.connections.Add(prevGo);
+
+                        var cable = Instantiate(gm.powerCablePrefab, prevGo.transform.position, gm.powerCablePrefab.transform.rotation);
+                        var cableS = cable.GetComponent<PowerCablePath>();
+                        cableS.SetPowerCable(prevGo.transform.position, gm.selectedBuilding.transform.position);
                     }
 
                 }

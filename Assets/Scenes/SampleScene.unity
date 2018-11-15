@@ -1641,6 +1641,8 @@ MonoBehaviour:
   canBuild: 1
   connectButtonToggled: 0
   selectedBuilding: {fileID: 0}
+  powerCablePrefab: {fileID: 1794500726702024, guid: c581584e37846d64a89f74bec8d1dc00,
+    type: 2}
 --- !u!4 &1804349952
 Transform:
   m_ObjectHideFlags: 0

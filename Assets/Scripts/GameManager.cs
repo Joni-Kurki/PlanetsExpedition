@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
 
     public GameObject selectedBuilding;
 
+    public GameObject powerCablePrefab;
+
 	// Use this for initialization
 	void Start () {
         buildMode = false;
