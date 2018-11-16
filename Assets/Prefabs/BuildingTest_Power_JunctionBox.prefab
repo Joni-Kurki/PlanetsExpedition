@@ -138,4 +138,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxNumberOfConnections: 4
   connections: []
+  connectionType: 2
   TEST_showConnections: 1

@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PowerCablePath : MonoBehaviour {
 
-    public float width;
-    public float length;
+    GameManager gm;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -19,7 +18,9 @@ public class PowerCablePath : MonoBehaviour {
 
     public void SetPowerCable(Vector3 start, Vector3 end)
     {
-        var dir = new Vector3(end.x, 0, end.z) - new Vector3(start.x, 0, start.z);
+        var hCorrection = transform.localScale.y / 2;
+
+        var dir = new Vector3(end.x, hCorrection, end.z) - new Vector3(start.x, hCorrection, start.z);
         var mid = (dir) / 2.0f + new Vector3(start.x, 0, start.z);
         transform.position = mid;
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);

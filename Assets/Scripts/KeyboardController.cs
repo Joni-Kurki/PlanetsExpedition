@@ -77,14 +77,25 @@ public class KeyboardController : MonoBehaviour {
                         Debug.Log("Selection happened between "+prevGo.name + " :: "+ gm.selectedBuilding.name);
                         // CHECKKI tänne onko vapaata
                         var cs = prevGo.GetComponent<BuildingConnections>();
-                        cs.connections.Add(gm.selectedBuilding);
+                        var cs2 = gm.selectedBuilding.GetComponent<BuildingConnections>();
 
-                        cs = gm.selectedBuilding.GetComponent<BuildingConnections>();
-                        cs.connections.Add(prevGo);
+                        if (cs.ConnectionCanBeAdded(cs2.connectionType) && cs2.ConnectionCanBeAdded(cs.connectionType))
+                        {
+                            cs.connections.Add(gm.selectedBuilding);
 
-                        var cable = Instantiate(gm.powerCablePrefab, prevGo.transform.position, gm.powerCablePrefab.transform.rotation);
-                        var cableS = cable.GetComponent<PowerCablePath>();
-                        cableS.SetPowerCable(prevGo.transform.position, gm.selectedBuilding.transform.position);
+                            //cs2 = gm.selectedBuilding.GetComponent<BuildingConnections>();
+                            cs2.connections.Add(prevGo);
+
+                            var cable = Instantiate(gm.powerCablePrefab, prevGo.transform.position, gm.powerCablePrefab.transform.rotation);
+                            var cableS = cable.GetComponent<PowerCablePath>();
+                            cableS.SetPowerCable(prevGo.transform.position, gm.selectedBuilding.transform.position);
+
+                            gm.connectButtonToggled = false;
+                        }
+                        else
+                        {
+                            Debug.Log("Not enough connection slots");
+                        }
                     }
 
                 }

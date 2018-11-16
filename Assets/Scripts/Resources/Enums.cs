@@ -11,4 +11,11 @@ public class Enums {
         warfare = 5,
         healthCare = 6
     }
+
+    public enum PowerConnectionType
+    {
+        none = 0,
+        output = 1,
+        input = 2,
+    }
 }
