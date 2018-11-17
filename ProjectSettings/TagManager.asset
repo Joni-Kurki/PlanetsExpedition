@@ -10,6 +10,7 @@ TagManager:
   - GameManager
   - Builder
   - Cursor_building
+  - SelectedBuilding_Particle
   layers:
   - Default
   - TransparentFX

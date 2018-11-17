@@ -55,35 +55,36 @@ public class KeyboardController : MonoBehaviour {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit = new RaycastHit();
 
-            
             if (Physics.Raycast(ray, out hit))
             {
                 // If building is hit
                 if (hit.collider.gameObject.tag == "Building_hitboxable")
                 {
                     GameObject prevGo = null; 
-                    // If connecting buildings
+                    // If connecting, check if previous building exists basically
                     if(gm.connectButtonToggled && gm.selectedBuilding != null)
                     {
                         prevGo = gm.selectedBuilding;
                     }
                     
-
                     BuildingScript bs = hit.collider.gameObject.GetComponent<BuildingScript>();
                     bs.Select(hit.collider.gameObject);
 
+                    gm.SetParticleActive(true);
+
+                    // Try connecting two buildings
                     if(prevGo != null && gm.selectedBuilding != null && prevGo != gm.selectedBuilding)
                     {
                         Debug.Log("Selection happened between "+prevGo.name + " :: "+ gm.selectedBuilding.name);
-                        // CHECKKI tänne onko vapaata
+
                         var cs = prevGo.GetComponent<BuildingConnections>();
                         var cs2 = gm.selectedBuilding.GetComponent<BuildingConnections>();
 
+                        // Check if connection can be made between two buildings
                         if (cs.ConnectionCanBeAdded(cs2.connectionType) && cs2.ConnectionCanBeAdded(cs.connectionType))
                         {
                             cs.connections.Add(gm.selectedBuilding);
 
-                            //cs2 = gm.selectedBuilding.GetComponent<BuildingConnections>();
                             cs2.connections.Add(prevGo);
 
                             var cable = Instantiate(gm.powerCablePrefab, prevGo.transform.position, gm.powerCablePrefab.transform.rotation);
@@ -94,10 +95,9 @@ public class KeyboardController : MonoBehaviour {
                         }
                         else
                         {
-                            Debug.Log("Not enough connection slots");
+                            Debug.Log("Cannot create connection");
                         }
                     }
-
                 }
             }
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingScript : MonoBehaviour {
+public class SelectedBuildingParticle : MonoBehaviour {
 
     GameManager gm;
 
@@ -13,11 +13,9 @@ public class BuildingScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(gm.selectedBuilding != null)
+        {
+            transform.position = gm.selectedBuilding.transform.position;
+        }
 	}
-
-    public void Select(GameObject go)
-    {
-        gm.selectedBuilding = go;
-    }
 }

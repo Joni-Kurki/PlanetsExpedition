@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
         scrapMetal = 20;
         canBuild = true;
         //selectedBuilding = buildingArray[selectedBuildingIndex];
+        SetParticleActive(false);
     }
 	
 	// Update is called once per frame
@@ -49,11 +50,17 @@ public class GameManager : MonoBehaviour {
         if (buildMode)
         {
             cos.instantiatedGos[selectedBuildingIndex].SetActive(true);
+            SetParticleActive(false);
         }
         else if (!buildMode)
         {
             cos.SetAllFalse();
             selectedBuilding = null;
         }
+    }
+
+    public void SetParticleActive(bool state)
+    {
+        GameObject.FindGameObjectWithTag("SelectedBuilding_Particle").transform.Find("SelectedBuildingMarker").gameObject.SetActive(state);
     }
 }
