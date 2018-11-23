@@ -17,5 +17,6 @@ public class Enums {
         none = 0,
         output = 1,
         input = 2,
+        inputEndPoint = 3
     }
 }

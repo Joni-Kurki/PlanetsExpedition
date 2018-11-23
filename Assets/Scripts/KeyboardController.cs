@@ -16,9 +16,10 @@ public class KeyboardController : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            var uimodetextgo = GameObject.FindGameObjectsWithTag("UI").FirstOrDefault(f => f.gameObject.name == "UI_ModeText");
-            UIBuildMode ubmscript = uimodetextgo.GetComponent<UIBuildMode>();
-            ubmscript.ToggleBuildMode();
+            //var uimodetextgo = GameObject.FindGameObjectsWithTag("UI").FirstOrDefault(f => f.gameObject.name == "UI_ModeText");
+            //UIBuildMode ubmscript = uimodetextgo.GetComponent<UIBuildMode>();
+            //ubmscript.ToggleBuildMode();
+            gm.SetBuildMode(!gm.buildMode);
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -27,9 +28,9 @@ public class KeyboardController : MonoBehaviour {
                 CursorObjectSwap cos = GameObject.FindGameObjectWithTag("Cursor").GetComponent<CursorObjectSwap>();
                 cos.SetAllFalse();
                 gm.selectedBuildingIndex--;
-                var uimodetextgo = GameObject.FindGameObjectsWithTag("UI").FirstOrDefault(f => f.gameObject.name == "UI_ModeText");
-                UIBuildMode ubmscript = uimodetextgo.GetComponent<UIBuildMode>();
-                ubmscript.SetBuildModeText();
+                //var uimodetextgo = GameObject.FindGameObjectsWithTag("UI").FirstOrDefault(f => f.gameObject.name == "UI_ModeText");
+                //UIBuildMode ubmscript = uimodetextgo.GetComponent<UIBuildMode>();
+                //ubmscript.SetBuildModeText();
             }
         }
         if (Input.GetKeyDown(KeyCode.F3))
@@ -39,9 +40,9 @@ public class KeyboardController : MonoBehaviour {
                 CursorObjectSwap cos = GameObject.FindGameObjectWithTag("Cursor").GetComponent<CursorObjectSwap>();
                 cos.SetAllFalse();
                 gm.selectedBuildingIndex++;
-                var uimodetextgo = GameObject.FindGameObjectsWithTag("UI").FirstOrDefault(f => f.gameObject.name == "UI_ModeText");
-                UIBuildMode ubmscript = uimodetextgo.GetComponent<UIBuildMode>();
-                ubmscript.SetBuildModeText();
+                //var uimodetextgo = GameObject.FindGameObjectsWithTag("UI").FirstOrDefault(f => f.gameObject.name == "UI_ModeText");
+                //UIBuildMode ubmscript = uimodetextgo.GetComponent<UIBuildMode>();
+                //ubmscript.SetBuildModeText();
             }
         }
         // Building mode
@@ -69,7 +70,7 @@ public class KeyboardController : MonoBehaviour {
                     
                     BuildingScript bs = hit.collider.gameObject.GetComponent<BuildingScript>();
                     bs.Select(hit.collider.gameObject);
-
+                    // Set selected building particle system 
                     gm.SetParticleActive(true);
 
                     // Try connecting two buildings
@@ -90,6 +91,9 @@ public class KeyboardController : MonoBehaviour {
                             var cable = Instantiate(gm.powerCablePrefab, prevGo.transform.position, gm.powerCablePrefab.transform.rotation);
                             var cableS = cable.GetComponent<PowerCablePath>();
                             cableS.SetPowerCable(prevGo.transform.position, gm.selectedBuilding.transform.position);
+
+                            cs.createdCables.Add(cable);
+                            cs2.createdCables.Add(cable);
 
                             gm.connectButtonToggled = false;
                         }

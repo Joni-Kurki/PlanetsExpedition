@@ -153,5 +153,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxNumberOfConnections: 2
   connections: []
-  connectionType: 2
+  connectionType: 3
   TEST_showConnections: 1

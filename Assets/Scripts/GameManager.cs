@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
             connectButtonToggled = false;
 	}
 
+    // What happens when build mode is set 
     public void SetBuildMode(bool b)
     {
         buildMode = b;

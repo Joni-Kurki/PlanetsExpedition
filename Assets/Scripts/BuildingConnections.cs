@@ -6,6 +6,7 @@ public class BuildingConnections : MonoBehaviour {
 
     public int maxNumberOfConnections;
     public List<GameObject> connections;
+    public List<GameObject> createdCables;
     public Enums.PowerConnectionType connectionType;
 
     GameManager gm;
@@ -31,4 +32,19 @@ public class BuildingConnections : MonoBehaviour {
     {
         return (connections.Count + 1) <= maxNumberOfConnections && !(otherConnectionType == Enums.PowerConnectionType.output && connectionType == Enums.PowerConnectionType.output);
     }
+
+    public void RemoveConnections()
+    {
+        if (connections.Count > 0)
+        {
+            foreach(GameObject con in connections)
+            {
+                var bc = con.GetComponent<BuildingConnections>();
+                bc.connections.Remove(gameObject);
+                bc.createdCables.ForEach(f => f.SetActive(false));
+            }
+        }
+        gameObject.SetActive(false);
+    }
+
 }
